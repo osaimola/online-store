@@ -1,8 +1,9 @@
 <!doctype html>
 <title>Example</title>
+
 <style>
   /*default grid behaviour, small screens*/
-  .band {
+  .productlistarea {
   width: 90%;
   max-width: 1240px;
   margin: 0 auto;
@@ -11,26 +12,33 @@
    
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  grid-gap: 20px;
+  grid-gap: 15px;
   }
   
   /*medium screens*/
   @media only screen and (min-width: 500px) {
-  .band {
-    grid-template-columns: 1fr 1fr;
+  .productlistarea {
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 63px;
+    margin-right: 5px;
 
     
   }  
   }
   
   /*large screens*/
-  @media only screen and (min-width: 850px) {
-  .band {
+  @media only screen and (min-width: 950px) {
+  .productlistarea {
+    margin-left: 20%;
+    margin-right: 2%;
+    width: 78%;
+
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    vertical-align: top;
   }
   
   
-  .item-1 {
+  .featured-item {
     grid-column: 1/ span 2;
   } /*make firs item occupy 2 columns*/ 
   }
@@ -56,9 +64,10 @@
   .card:hover {
   top: -2px;
   box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+  }
 
-  
-
+  .card:hover span{
+    color: #00ccff;
   }
 
  
@@ -67,7 +76,7 @@
   padding: 20px;
   }
  
-/* typography */
+/* font formatting */
 .card h1 {
   font-size: 20px;
   margin: 0;
@@ -89,7 +98,7 @@
 }
 
 
-  /*style product image*/
+  /*product image styling*/
 .card .thumb {
   padding-bottom: 60%;
   background-size: cover;
@@ -107,7 +116,7 @@
 }
   
   .card p { 
-  flex: 1; /* make p grow to fill available space*/
+  flex: 1; /* make product descri grow to fill available space*/
   line-height: 1.4;
 }
 
@@ -133,6 +142,18 @@
   background-color: #ddd;
   color: black;
 }
+
+.hamburger{
+  width: 30px;
+  height: 4px;
+  background-color: #e6e6e6;
+  margin: 3px 0;
+}
+
+.topnav .icon:hover {
+  background-color: #b30000;
+}
+
 
 .active {
   background-color: #b30000;
@@ -165,41 +186,152 @@
   }
 }
 
+
+/*begin css for sidebar*/
+  .sidebar-container{
+    display: none;
+    position: absolute;
+  background-color: #669999;
+  height: 240px;
+  }
+  .sidebar-item{
+    display: none;
+    flex-wrap: nowrap;
+
+  }
+  .sidebar-icon{
+    display: none;
+    width: 50px;
+    height: 48px;
+  }
+  .sidebar-link{
+    display: none;
+  }
+
+.sidebar-container a {
+  float: left;
+  color: #e6e6e6;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+
+
+@media only screen and (min-width: 500px) {
+  .sidebar-container{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+  width: 50px;
+  flex-wrap: nowrap;
+  
+  }
+  .sidebar-item{
+    display: table;
+    flex-wrap: nowrap;
+  }
+  .sidebar-icon{
+    display: table;
+    flex-wrap: nowrap;
+  }
+  .sidebar-link{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .sidebar-container{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 15%;
+
+}
+
+.sidebar-item {
+  display: flex;
+  
+  
+}
+
+.sidebar-icon {
+  display: table;
+}
+
+
+.sidebar-link {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+
+ }
+
 </style>
 
-<!-- sidebar styling -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <!-- navigation bar -->
 <div class="topnav" id="myTopnav">
   <a href="#home" class="active">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
+  <a href="#news">Gadgets</a>
+  <a href="#contact">Accessories</a>
+  <a href="#about">About Us</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
+    
+      <div class="hamburger"></div>
+      <div class="hamburger"></div>
+      <div class="hamburger"></div>
+    
   </a>
 </div>
 
-<div>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
+<div >
   <!-- Sidebar -->
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%">
-  <h3 class="w3-bar-item">Menu</h3>
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <div class="w3-bar-item w3-button">
-  <p>Default range slider:</p>
-  <input type="range" min="1" max="100" value="50">
+<div class="sidebar-container">
+    <div class="sidebar-item" >
+      <div class="sidebar-icon"><i class="fa fa-search" style="font-size: 40px; color: #b30000; margin: 4px;"></i></div>
+      <a href="#" class="sidebar-link" >Search</a>
+    </div>
+    <div class="sidebar-item" >
+      <div class="sidebar-icon"><i class="fa fa-filter" style="font-size: 40px; color: #b30000; margin: 4px;"></i></div>
+      <a href="#" class="sidebar-link" >Filters</a>
+    </div>
+    <div class="sidebar-item" >
+      <div class="sidebar-icon"><i class="fa fa-shopping-cart" style="font-size: 40px; color: #b30000; margin: 4px;"></i></div>
+      <a href="#" class="sidebar-link" >My Cart</a>
+    </div>
+    <div class="sidebar-item" >
+      <div class="sidebar-icon"><i class="fa fa-credit-card" style="font-size: 40px; color: #b30000; margin: 4px;"></i></div>
+      <a href="#" class="sidebar-link" >Payments</a>
+    </div>
+    
+    <div class="sidebar-item" >
+      <div class="sidebar-icon"><i class="fa fa-user" style="font-size: 40px; color: #b30000; margin: 4px;"></i></div>
+      <a href="#" class="sidebar-link" >Account</a>
+    </div>
   </div>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
 
 
-<div class="band" style="margin-left: 22.5%; margin-right: 2.5%; width: 75%">
+<div class="productlistarea" >
  
   <!-- grid item, containing a card -->
-  <div class="item-1">
+  <div class="featured-item">
         <a href="" class="card">
           <div class="thumb" style="background-image: url(https://photos5.appleinsider.com/gallery/26909-39215-macbook-pro-13-inch-touch-bar-review00017-l.jpg";></div>
           <article>
